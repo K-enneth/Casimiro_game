@@ -12,8 +12,8 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
+  - Background
+  - Hero
   - 
   - 
   - 
@@ -41,6 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 174264747
+    locked: 0
   - name: Ground
     uniqueID: 3578690479
+    locked: 0
+  - name: Hero
+    uniqueID: 4004312153
     locked: 0
