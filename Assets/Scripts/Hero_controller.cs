@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Hero_controller : MonoBehaviour
 {
+    [Header("Attack Variables")]
+    [SerializeField] SwordController_1 swordController;
+
     [Header("Animation Variable")]
     [SerializeField] Animation_controller animatorController;
 
@@ -13,9 +16,11 @@ public class Hero_controller : MonoBehaviour
 
     [Header("Boolean Variables")]                           //"Pestaña" con título en el Inspector 
     public bool canDoubleJump;                              //variable boleana(verdadero/falso) para ejecutar el salto doble
+    public bool playerIsAttacking;                          //Esta atacando el héroe??
 
     [Header("Interruption Variables")]                      //"Pestaña" con título en el Inspector              
     public bool canCheckGround;                             //Variable booleana, usada para detectar si tocas el piso
+    public bool canMove; //Usamos la variable para anular el movimiento "Horizontal" "Run" y "Idle"
 
 
 
@@ -26,6 +31,8 @@ public class Hero_controller : MonoBehaviour
     [SerializeField] private float speed_;                  //"SerializeField" significa que desde el inspector podemos  manipular o ver su valor.
     [SerializeField] private Vector2 movementDirection;     //"SerializeField" significa que desde el inspector podemos  manipular o ver su valor.
 
+    private bool attackPressed = false;
+
     private Rigidbody2D rigidbody2D_;                       //Variable de instanciamiento
     private bool jumpPressed = false;                       //variable usadas para saber si se apretó la barra espaciadora
                                                             //y es personaje saltó.
@@ -34,6 +41,7 @@ public class Hero_controller : MonoBehaviour
 
     void Start()
     {
+        canMove = true; //Al iniciar el juego el personaje se mueve "Run" y "Idle"
         canCheckGround = true;                              //inicializamos la variable "canCheckGround" como verdadera
         rigidbody2D_ = GetComponent<Rigidbody2D>();         //Instanciando la variable.
         animatorController.Play(AnimationId.Idle);
@@ -48,6 +56,7 @@ public class Hero_controller : MonoBehaviour
         HandleMovement();                                    //invocando el método "HandleMovement" (multiplica el valor de "x" por "speed".
         HandleFlip();
         HandleJump();                                         //invocando el método "HandleFlip" (rota el personaje a la izquierda o a la derecha)
+        HandleAttack(); //invocando el método "HandleAttack" (agregamos clip de animación Attack)
 
     }
 
@@ -55,15 +64,16 @@ public class Hero_controller : MonoBehaviour
     {
         if (!canCheckGround) return;   //Si NO esta tocando el piso NO se ejecuta nada de este método
                                        //(esta variable se apaga en la corrutina)
-        Debug.Log(!canCheckGround);
+        //Debug.Log(!canCheckGround);
 
 
         playerIsOnGround = footA.isTouching || footB.isTouching;  //Falta comentar..........
-        Debug.Log("Tocando el pioo");
+        //Debug.Log("Tocando el pioo");
     }
 
     void HandleControls()
     {
+        attackPressed = Input.GetButtonDown("Attack"); //linkeamos el RMB a variable "attackPressed"
         movementDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         jumpPressed = Input.GetButtonDown("Jump");
 
@@ -71,6 +81,7 @@ public class Hero_controller : MonoBehaviour
 
     void HandleMovement()
     {
+        if (!canMove) return; //Si está volando no hagas nada.....
         rigidbody2D_.velocity = new Vector2(movementDirection.x * speed_, rigidbody2D_.velocity.y);
 
         if (playerIsOnGround)
@@ -137,6 +148,28 @@ public class Hero_controller : MonoBehaviour
         canCheckGround = true;
     }
 
+    void HandleAttack()                         //Método de animación Attack (puede atacar en el piso y en el aire)
+    {
+        //Debug.Log("ok");
+        if (attackPressed && !playerIsAttacking)          //Si apretamos RMB y NO está  atacando..
+        {
+            animatorController.Play(AnimationId.Attack);  //ejecutamos Clip "Atack"
+            playerIsAttacking = true;                     //Prendemos la variable como verdadera (el héroe está atacando)
+            swordController.Attack(0.4f);
+            StartCoroutine(RestoreAttack());              //Inicia corrutina "RestoreAttack" (reinicia
+        }
+    }
+
+    IEnumerator RestoreAttack()                         //Corrutina "RestoreAttack"
+    {
+        if (playerIsOnGround)                          //Si el héroe esta en el suelo?
+            canMove = false;                            //apaga la variable "canMove"
+        yield return new WaitForSeconds(0.4f);          //espera 0.4f 
+        playerIsAttacking = false;                      //Apaga variable "heroe esta tacando"
+        if (!playerIsOnGround)                          //Si el héroe NO está en el piso.....
+            animatorController.Play(AnimationId.PrepararBrinco);  //Inicia clip "preparaBrinco"
+        canMove = true;                                 //prende la variable "canMove"
+    }
 
 }
 

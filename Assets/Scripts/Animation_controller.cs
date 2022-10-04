@@ -8,6 +8,7 @@ public enum AnimationId                 //Definimos un enumerado
     Run = 1,
     PrepararBrinco=2,
     Brincar=3,
+    Attack=4,
 }
 
 public class Animation_controller : MonoBehaviour
