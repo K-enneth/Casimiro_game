@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageDemo_1 : MonoBehaviour
+public class DamageDemo_1 : MonoBehaviour, ITargetCombat_1
 {
     [SerializeField] int health;
     [SerializeField] DamageFeedbackEffect damageFeedbackEffect;

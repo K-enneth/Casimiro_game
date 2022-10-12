@@ -37,7 +37,7 @@ public class SwordController_1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       // Debug.Log("OnTrigger");
+       //Debug.Log("OnTrigger");
 
         if (collision.gameObject.tag.Equals(targetTag.ToString()))
         {
