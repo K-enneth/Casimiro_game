@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero_controller : MonoBehaviour
+public class Hero_controller : MonoBehaviour, ITargetCombat_1
 {
     [Header("Attack Variables")]
     [SerializeField] SwordController_1 swordController;
+
+    [Header("Health Variables")]//
+    [SerializeField] int health = 10;//
 
     [Header("Animation Variable")]
     [SerializeField] Animation_controller animatorController;
@@ -38,6 +41,8 @@ public class Hero_controller : MonoBehaviour
                                                             //y es personaje saltó.
     private bool playerIsOnGround;                          //Variable privada tipo Bool, el Heroe esta tocando el piso?
 
+    private float alpha = 1;                                //
+    public GameObject heroe;
 
     void Start()
     {
@@ -159,6 +164,20 @@ public class Hero_controller : MonoBehaviour
             StartCoroutine(RestoreAttack());              //Inicia corrutina "RestoreAttack" (reinicia
         }
     }
+
+    public void TakeDamage(int damagePoints)
+     {
+         health = Mathf.Clamp(health - damagePoints, 0, 10);
+         alpha -= health* Time.deltaTime;                                                        //canal alpha
+         Color newColor = new Color(1, 1, 1, alpha);                                             //nuevo color con efecto alpha
+         heroe.GetComponent<SpriteRenderer>().color = newColor;                                  //obtenemos el componente SpriteRender y aplicamos nuevo color
+         //Debug.Log(health);
+         if(health == 0)
+         {
+             Destroy(gameObject);
+         }
+     }
+
 
     IEnumerator RestoreAttack()                         //Corrutina "RestoreAttack"
     {
