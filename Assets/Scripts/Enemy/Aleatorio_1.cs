@@ -8,7 +8,7 @@ public class Aleatorio_1 : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(velocidad);
+        
         transform.Translate(velocidad * Time.deltaTime, 0, 0);
         if (transform.position.x < -4f)   //Rango de desplazamieneto en "+X" (a la Derecha)
             velocidad = -velocidad;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hero_controller : MonoBehaviour, ITargetCombat_1
 {
@@ -26,7 +27,9 @@ public class Hero_controller : MonoBehaviour, ITargetCombat_1
     public bool canCheckGround;                             //Variable booleana, usada para detectar si tocas el piso
     public bool canMove; //Usamos la variable para anular el movimiento "Horizontal" "Run" y "Idle"
 
-
+    public Image[] hearts;
+    public Sprite fullheart;
+    public Sprite emptyheart;
 
 
     [Header("Rigid Variables")]
@@ -42,7 +45,7 @@ public class Hero_controller : MonoBehaviour, ITargetCombat_1
                                                             //y es personaje saltó.
     private bool playerIsOnGround;                          //Variable privada tipo Bool, el Heroe esta tocando el piso?
 
-    private float alpha = 1;                                //
+    
     public GameObject heroe;
 
     public TMP_Text Contador;                               //variable tipo "TMP_Text" = Contador (salud del Héroe)
@@ -57,7 +60,7 @@ public class Hero_controller : MonoBehaviour, ITargetCombat_1
         animatorController.Play(AnimationId.Idle);
         //jumpPressed = Input.GetButtonDown("Jump");
 
-        Contador.text = "Salud:  " + health;                //Declaramos el valor de "Contador.text"
+       
     }
 
     // Update is called once per frame
@@ -70,6 +73,14 @@ public class Hero_controller : MonoBehaviour, ITargetCombat_1
         HandleJump();                                         //invocando el método "HandleFlip" (rota el personaje a la izquierda o a la derecha)
         HandleAttack(); //invocando el método "HandleAttack" (agregamos clip de animación Attack)
 
+        foreach(Image img in hearts)
+        {
+            img.sprite = emptyheart;
+        }
+        for(int i = 0; i < health; i++)
+        {
+            hearts[i].sprite = fullheart;
+        }
     }
 
     void HandleIsGrounding()
@@ -174,11 +185,9 @@ public class Hero_controller : MonoBehaviour, ITargetCombat_1
 
     public void TakeDamage(int damagePoints)
      {
-        Contador.text = "Salud:  " + health.ToString();          //Declaramos el valor de "Contador.text"
-        health = Mathf.Clamp(health - damagePoints, 0, 10);
-         alpha -= health* Time.deltaTime;                                                        //canal alpha
-         Color newColor = new Color(1, 1, 1, alpha);                                             //nuevo color con efecto alpha
-         heroe.GetComponent<SpriteRenderer>().color = newColor;                                  //obtenemos el componente SpriteRender y aplicamos nuevo color
+       
+        health = Mathf.Clamp(health - damagePoints, 0, 10); 
+
          //Debug.Log(health);
          if(health == 0)
          {
