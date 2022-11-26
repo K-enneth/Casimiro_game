@@ -52,6 +52,19 @@ public class Hero_controller : MonoBehaviour, ITargetCombat_1
                                                             //El valor de "Contador" esta linkeado al texto del Canvas
                                                             //y va variando de acuerdo el método "TakeDamage"
 
+    public static Hero_controller instance;
+     private void Awake()
+     {
+         if (instance == null)
+         {
+             instance = this;
+             DontDestroyOnLoad(this.gameObject);
+         }
+         else
+         {
+             Destroy(this.gameObject);
+         }
+     }
     void Start()
     {
         canMove = true; //Al iniciar el juego el personaje se mueve "Run" y "Idle"
@@ -207,6 +220,11 @@ public class Hero_controller : MonoBehaviour, ITargetCombat_1
         canMove = true;                                 //prende la variable "canMove"
     }
 
+    public void UpdatePosition(Vector2 position)
+     {
+         this.transform.position = position;
+         rigidbody2D_.velocity = Vector2.zero;
+     }
 }
 
 
