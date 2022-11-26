@@ -199,14 +199,19 @@ public class Hero_controller : MonoBehaviour, ITargetCombat_1
     public void TakeDamage(int damagePoints)
      {
        
-        health = Mathf.Clamp(health - damagePoints, 0, 10); 
+        health = Mathf.Clamp(health - damagePoints, 0, 10);
+        
+
 
          //Debug.Log(health);
          if(health == 0)
          {
              Destroy(gameObject);
          }
+
      }
+
+
 
 
     IEnumerator RestoreAttack()                         //Corrutina "RestoreAttack"
