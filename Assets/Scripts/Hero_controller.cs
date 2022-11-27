@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Hero_controller : MonoBehaviour, ITargetCombat_1
 {
@@ -207,7 +208,8 @@ public class Hero_controller : MonoBehaviour, ITargetCombat_1
          if(health == 0)
          {
              Destroy(gameObject);
-         }
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
      }
 
