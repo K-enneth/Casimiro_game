@@ -11,7 +11,7 @@ public class DamageDemo_1 : MonoBehaviour, ITargetCombat_1
     {
         damageFeedbackEffect.PlayDamageEffect();
         health -= damagePoints;
-        if (health == 0)
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
