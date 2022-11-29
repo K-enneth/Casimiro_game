@@ -4,9 +4,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO.Ports;
 
 public class Hero_controller : MonoBehaviour, ITargetCombat_1
 {
+
     [Header("Attack Variables")]
     [SerializeField] SwordController_1 swordController;
 
@@ -68,6 +70,8 @@ public class Hero_controller : MonoBehaviour, ITargetCombat_1
      }
     void Start()
     {
+      
+
         canMove = true; //Al iniciar el juego el personaje se mueve "Run" y "Idle"
         canCheckGround = true;                              //inicializamos la variable "canCheckGround" como verdadera
         rigidbody2D_ = GetComponent<Rigidbody2D>();         //Instanciando la variable.
@@ -80,6 +84,8 @@ public class Hero_controller : MonoBehaviour, ITargetCombat_1
     // Update is called once per frame
     void Update()
     {
+
+
         HandleIsGrounding();                                 //Invoca al método "HandleIsGrounding" (El héroe está tocando el piso?). 
         HandleControls();                                    //invocando el método "HandleControls" (abre el puerto de entrada del teclado)
         HandleMovement();                                    //invocando el método "HandleMovement" (multiplica el valor de "x" por "speed".
@@ -96,6 +102,13 @@ public class Hero_controller : MonoBehaviour, ITargetCombat_1
             hearts[i].sprite = fullheart;
         }
     }
+
+
+
+
+
+
+
 
     void HandleIsGrounding()
     {
@@ -119,6 +132,7 @@ public class Hero_controller : MonoBehaviour, ITargetCombat_1
     void HandleMovement()
     {
         if (!canMove) return; //Si está volando no hagas nada.....
+
         rigidbody2D_.velocity = new Vector2(movementDirection.x * speed_, rigidbody2D_.velocity.y);
 
         if (playerIsOnGround)

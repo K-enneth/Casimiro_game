@@ -1137,6 +1137,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: slime_0 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3424987723250391058, guid: f71095ec8bdcdcd40a066ad49f090c20, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3424987723250391059, guid: f71095ec8bdcdcd40a066ad49f090c20, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1185,6 +1189,30 @@ PrefabInstance:
       propertyPath: wayPointsManager
       value: 
       objectReference: {fileID: 1366121634}
+    - target: {fileID: 3424987723250391070, guid: f71095ec8bdcdcd40a066ad49f090c20, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424987724354251155, guid: f71095ec8bdcdcd40a066ad49f090c20, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245259896561629823, guid: f71095ec8bdcdcd40a066ad49f090c20, type: 3}
+      propertyPath: m_Size.x
+      value: 0.22664364
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245259896561629823, guid: f71095ec8bdcdcd40a066ad49f090c20, type: 3}
+      propertyPath: m_Size.y
+      value: 0.20893289
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245259896561629823, guid: f71095ec8bdcdcd40a066ad49f090c20, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0035659664
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245259896561629823, guid: f71095ec8bdcdcd40a066ad49f090c20, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f71095ec8bdcdcd40a066ad49f090c20, type: 3}
 --- !u!4 &459120037 stripped
