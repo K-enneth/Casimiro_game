@@ -49890,6 +49890,77 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7991363460379020941, guid: ec7f6b3aa65e007438c758c18cb3e04b, type: 3}
   m_PrefabInstance: {fileID: 867845726}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &513768664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 513768667}
+  - component: {fileID: 513768666}
+  - component: {fileID: 513768665}
+  m_Layer: 0
+  m_Name: Portals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &513768665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513768664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981a940082c61fa46b3a1eb685897c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &513768666
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513768664}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.29263496, y: 2.7237635}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.2155647, y: 6.537569}
+  m_EdgeRadius: 0
+--- !u!4 &513768667
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513768664}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 45.11, y: 27.87, z: -8.274494}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &548450462 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7838557533046088838, guid: 057545e288dd9b241b2a75d3ade3d945, type: 3}
@@ -51608,7 +51679,7 @@ MonoBehaviour:
   target: 0
   offsetZ: -10
   boundaryX:
-    min: 10
+    min: 3
     max: 50
   boundaryY:
     min: 0
