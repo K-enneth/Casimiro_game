@@ -6,5 +6,7 @@ using UnityEngine;
     {
         Level1_1 = 0x010100,
         Level1_2 = 0x010200,
-    }
+        Level1_3 = 0x010200,
+
+}
 
